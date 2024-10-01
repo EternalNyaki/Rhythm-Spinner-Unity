@@ -20,24 +20,7 @@ public class ChartUIManager : MonoBehaviour
         }
     }
 
-    public SongInfo songInfo;
-
-    private int noteSubdivision = 4;
-    private int gridSubdivision = 16;
-    public float subdivision
-    {
-        get { return noteSubdivision / gridSubdivision; }
-    }
-
     public NoteInfo info;
-
-    public TMP_InputField timeSignatureBeatField;
-    public TMP_InputField timeSignatureSubdivisionField;
-    public TMP_InputField gridSubdivisionField;
-    public TMP_InputField bpmField;
-    public TMP_InputField offsetField;
-    public TMP_InputField songLengthMinutesField;
-    public TMP_InputField songLengthSecondsField;
 
     public TMP_Dropdown noteTypeField;
     public TMP_InputField laneField;
@@ -64,12 +47,8 @@ public class ChartUIManager : MonoBehaviour
 
     private void Initialize()
     {
-        //noteTypeField.ClearOptions();
-        //noteTypeField.AddOptions(new List<string>(Enum.GetNames(typeof(NoteType))));
-
-        songInfo = new SongInfo(120, 0f, 0f, 4, 150f);
-
-        SetSongFieldValues(songInfo);
+        noteTypeField.ClearOptions();
+        noteTypeField.AddOptions(new List<string>(Enum.GetNames(typeof(NoteType))));
     }
 
     // Update is called once per frame
@@ -93,17 +72,6 @@ public class ChartUIManager : MonoBehaviour
                 SetNoteFieldValues(new NoteInfo());
             }
         }
-    }
-
-    public void SetSongFieldValues(SongInfo songInfo)
-    {
-        timeSignatureBeatField.text = songInfo.beatsPerBar.ToString();
-        timeSignatureSubdivisionField.text = noteSubdivision.ToString();
-        gridSubdivisionField.text = gridSubdivision.ToString();
-        bpmField.text = songInfo.bpm.ToString();
-        offsetField.text = songInfo.offset.ToString();
-        songLengthMinutesField.text = ((int)(songInfo.length / 60)).ToString();
-        songLengthSecondsField.text = ((int)(songInfo.length % 60)).ToString();
     }
 
     public void SetNoteFieldValues(NoteInfo noteInfo)
@@ -168,44 +136,5 @@ public class ChartUIManager : MonoBehaviour
         {
             info.stringParam = miscStringField.text;
         }
-    }
-
-    public void OnTimeSignatureBeatsChanged(string value)
-    {
-        int.TryParse(value, out songInfo.beatsPerBar);
-    }
-
-    public void OnTimeSignatureSubdivisionChanged(string value)
-    {
-        int.TryParse(value, out noteSubdivision);
-    }
-
-    public void OnGridSubdivisionChanged(string value)
-    {
-        int.TryParse(value, out gridSubdivision);
-    }
-
-    public void OnBPMChanged(string value)
-    {
-        int.TryParse(value, out songInfo.bpm);
-    }
-
-    public void OnOffsetChanged(string value)
-    {
-        float.TryParse(value, out songInfo.offset);
-    }
-
-    public void OnSongLengthMinutesChanged(string value)
-    {
-        int mins;
-        int.TryParse(value, out mins);
-        songInfo.length = mins * 60 + songInfo.length % 60;
-    }
-
-    public void OnSongLengthSecondsChanged(string value)
-    {
-        int secs;
-        int.TryParse(value, out secs);
-        songInfo.length = songInfo.length - songInfo.length % 60 + secs;
     }
 }

@@ -10,10 +10,10 @@ public class ChartColumn : GridColumn
     public override void SetHeight(float height)
     {
         base.SetHeight(height);
-        for (float pos = 0; pos <= gridController.height; pos += gridController.beatSpacing * ChartUIManager.Instance.subdivision)
+        for (float pos = 0; pos <= gridController.height; pos += gridController.beatSpacing * gridController.subdivision)
         {
             GameObject gridLine = Instantiate(gridLinePrefab, new Vector3(rect.position.x, rect.position.y - gridController.height / 2 + pos), Quaternion.identity, transform);
-            ((RectTransform)gridLine.transform).SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, gridController.beatSpacing * ChartUIManager.Instance.subdivision);
+            ((RectTransform)gridLine.transform).SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, gridController.beatSpacing * gridController.subdivision);
             if (pos % gridController.beatSpacing != 0)
             {
                 gridLine.GetComponent<Image>().color = Color.white * 0.4f;

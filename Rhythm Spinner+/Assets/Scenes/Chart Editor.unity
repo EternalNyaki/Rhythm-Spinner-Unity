@@ -38,7 +38,6 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -235,81 +234,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 16922930}
   m_CullTransparentMesh: 1
---- !u!1 &30194888
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 30194890}
-  - component: {fileID: 30194889}
-  m_Layer: 0
-  m_Name: Chart UI Manager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &30194889
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 30194888}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e95952f358b97ca46b7715712f16a209, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  songInfo:
-    bpm: 0
-    crotchet: 0
-    offset: 0
-    countIn: 0
-    beatsPerBar: 0
-    length: 0
-    audio: {fileID: 0}
-    chartInfo: []
-    title: 
-    artist: 
-    coverImage: {fileID: 0}
-  info:
-    type: 0
-    lane: 0
-    beat: 0
-    intParam: 0
-    stringParam: 
-  timeSignatureBeatField: {fileID: 359402860}
-  timeSignatureSubdivisionField: {fileID: 647189775}
-  gridSubdivisionField: {fileID: 898346625}
-  bpmField: {fileID: 842180688}
-  offsetField: {fileID: 647540554}
-  songLengthMinutesField: {fileID: 1600541891}
-  songLengthSecondsField: {fileID: 1338877994}
-  noteTypeField: {fileID: 1004112835}
-  laneField: {fileID: 110259074}
-  beatField: {fileID: 734487299}
-  miscIntField: {fileID: 1522927072}
-  miscStringField: {fileID: 325981050}
-  gridController: {fileID: 1191258748}
---- !u!4 &30194890
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 30194888}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 533.12585, y: 171.9958, z: 1.4263463}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &37549713
 GameObject:
   m_ObjectHideFlags: 0
@@ -615,7 +539,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 30194889}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: ChartUIManager, Assembly-CSharp
         m_MethodName: OnLaneChanged
         m_Mode: 0
@@ -1500,7 +1424,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 30194889}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: ChartUIManager, Assembly-CSharp
         m_MethodName: OnMiscStringChanged
         m_Mode: 0
@@ -1777,7 +1701,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 30194889}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: ChartUIManager, Assembly-CSharp
         m_MethodName: OnTimeSignatureBeatsChanged
         m_Mode: 0
@@ -3856,7 +3780,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 30194889}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: ChartUIManager, Assembly-CSharp
         m_MethodName: OnTimeSignatureSubdivisionChanged
         m_Mode: 0
@@ -4043,7 +3967,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 30194889}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: ChartUIManager, Assembly-CSharp
         m_MethodName: OnOffsetChanged
         m_Mode: 0
@@ -4400,6 +4324,62 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 705525554}
   m_CullTransparentMesh: 1
+--- !u!1 &722863493
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 722863495}
+  - component: {fileID: 722863494}
+  m_Layer: 0
+  m_Name: Chart UI Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &722863494
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 722863493}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e95952f358b97ca46b7715712f16a209, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  info:
+    type: 0
+    lane: 0
+    beat: 0
+    intParam: 0
+    stringParam: 
+  noteTypeField: {fileID: 0}
+  laneField: {fileID: 0}
+  beatField: {fileID: 0}
+  miscIntField: {fileID: 0}
+  miscStringField: {fileID: 0}
+  gridController: {fileID: 0}
+--- !u!4 &722863495
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 722863493}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &734487297
 GameObject:
   m_ObjectHideFlags: 0
@@ -4519,7 +4499,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 30194889}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: ChartUIManager, Assembly-CSharp
         m_MethodName: OnBeatChanged
         m_Mode: 0
@@ -5043,7 +5023,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 30194889}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: ChartUIManager, Assembly-CSharp
         m_MethodName: OnBPMChanged
         m_Mode: 0
@@ -6097,7 +6077,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 30194889}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: ChartUIManager, Assembly-CSharp
         m_MethodName: OnGridSubdivisionChanged
         m_Mode: 0
@@ -6317,7 +6297,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 30194889}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: ChartUIManager, Assembly-CSharp
         m_MethodName: OnNoteTypeChanged
         m_Mode: 0
@@ -6383,7 +6363,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1019413897
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7089,6 +7069,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   height: 5000
   beatSpacing: 100
+  subdivision: 0
   noteObjectPrefab: {fileID: 3656530565065134411, guid: 5209d2eb8d7b8cc4ca4f75b2f6142c37, type: 3}
   labelObjectPrefab: {fileID: 1160250952271250242, guid: 78c02b78400e0034e85b35d0ea2449c1, type: 3}
   columnObjectPrefab: {fileID: 1160250952271250242, guid: 301585f848fcc4f4487b219666dda65d, type: 3}
@@ -7379,7 +7360,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 30194889}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: ChartUIManager, Assembly-CSharp
         m_MethodName: OnSongLengthSecondsChanged
         m_Mode: 0
@@ -8414,7 +8395,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 30194889}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: ChartUIManager, Assembly-CSharp
         m_MethodName: OnMiscIntChanged
         m_Mode: 0
@@ -8735,7 +8716,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 30194889}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: ChartUIManager, Assembly-CSharp
         m_MethodName: OnSongLengthMinutesChanged
         m_Mode: 0
@@ -12301,4 +12282,4 @@ SceneRoots:
   - {fileID: 524990570}
   - {fileID: 829535222}
   - {fileID: 1774401772}
-  - {fileID: 30194890}
+  - {fileID: 722863495}

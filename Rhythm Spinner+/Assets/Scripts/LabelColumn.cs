@@ -15,7 +15,7 @@ public class LabelColumn : GridColumn
         {
             GameObject label = Instantiate(labelPrefab, new Vector3(rect.position.x, rect.position.y - gridController.height / 2 + beat * gridController.beatSpacing), Quaternion.identity, transform);
             TMP_Text text = label.GetComponent<TMP_Text>();
-            text.text = $"{beat / ChartUIManager.Instance.songInfo.beatsPerBar + 1}.{(beat % ChartUIManager.Instance.songInfo.beatsPerBar) + 1}";
+            text.text = $"{beat / 4 + 1}.{(beat % 4) + 1}";
         }
     }
 }

@@ -13,6 +13,7 @@ public class GridController : MonoBehaviour
 
     public int beats { get; private set; }
     public float beatSpacing = 200;
+    public float subdivision = 1 / 2;
 
     public GameObject noteObjectPrefab;
     public GameObject labelObjectPrefab;
@@ -53,8 +54,8 @@ public class GridController : MonoBehaviour
 
     public float SnapYPositionToBeatGrid(float yPos)
     {
-        float output = yPos + ChartUIManager.Instance.subdivision / 2 * 100;
-        output -= output % (ChartUIManager.Instance.subdivision * beatSpacing);
+        float output = yPos + subdivision / 2 * 100;
+        output -= output % (subdivision * beatSpacing);
         output = Mathf.Clamp(output, 0, beats * beatSpacing);
         return output;
     }
