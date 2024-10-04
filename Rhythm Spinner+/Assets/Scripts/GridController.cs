@@ -1,13 +1,14 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-//Class loosely taken from this video by Code Monkey: https://www.youtube.com/watch?v=waEsGu--9P8
 public class GridController : MonoBehaviour
 {
     private const int width = 8;
-    public float height;
+    [NonSerialized]
+    public float height = 0;
 
     public const float k_heightBuffer = 50;
 
@@ -34,21 +35,8 @@ public class GridController : MonoBehaviour
         {
             gridObjects.Add(Instantiate(columnObjectPrefab, transform));
 
-            ChartColumn c = gridObjects[i].GetComponent<ChartColumn>();
-            c.id = i;
+            gridObjects[i].GetComponent<ChartColumn>().id = i;
         }
-        gridObjects.ForEach((GameObject gridObject) => { gridObject.GetComponent<GridColumn>().SetHeight(height + k_heightBuffer * 2); });
-
-
-        StartCoroutine(LateStart());
-    }
-
-    private IEnumerator LateStart()
-    {
-        yield return new WaitForFixedUpdate();
-        yield return new WaitForEndOfFrame();
-
-        transform.parent.parent.GetComponent<ScrollRect>().verticalScrollbar.value = 0;
     }
 
     public float SnapYPositionToBeatGrid(float yPos)

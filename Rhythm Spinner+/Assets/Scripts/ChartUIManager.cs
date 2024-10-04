@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using TMPro;
+using System.Collections;
+using UnityEngine.UI;
 
 public class ChartUIManager : MonoBehaviour
 {
@@ -26,7 +28,7 @@ public class ChartUIManager : MonoBehaviour
     private int gridSubdivision = 16;
     public float subdivision
     {
-        get { return noteSubdivision / gridSubdivision; }
+        get { return (float)noteSubdivision / gridSubdivision; }
     }
 
     public NoteInfo info;
@@ -60,16 +62,24 @@ public class ChartUIManager : MonoBehaviour
             Debug.LogError($"Cannot have multiple {this.GetType().Name} objects in one scene.");
             Destroy(this);
         }
+
+        StartCoroutine(LateStart());
     }
 
     private void Initialize()
     {
-        //noteTypeField.ClearOptions();
-        //noteTypeField.AddOptions(new List<string>(Enum.GetNames(typeof(NoteType))));
+        noteTypeField.ClearOptions();
+        noteTypeField.AddOptions(new List<string>(Enum.GetNames(typeof(NoteType))));
 
         songInfo = new SongInfo(120, 0f, 0f, 4, 150f);
+    }
 
-        SetSongFieldValues(songInfo);
+    private IEnumerator LateStart()
+    {
+        yield return new WaitForFixedUpdate();
+        yield return new WaitForEndOfFrame();
+
+        gridController.SetHeightWithBeats((int)(songInfo.duration / songInfo.crotchet));
     }
 
     // Update is called once per frame
@@ -102,13 +112,13 @@ public class ChartUIManager : MonoBehaviour
         gridSubdivisionField.text = gridSubdivision.ToString();
         bpmField.text = songInfo.bpm.ToString();
         offsetField.text = songInfo.offset.ToString();
-        songLengthMinutesField.text = ((int)(songInfo.length / 60)).ToString();
-        songLengthSecondsField.text = ((int)(songInfo.length % 60)).ToString();
+        songLengthMinutesField.text = ((int)(songInfo.duration / 60)).ToString();
+        songLengthSecondsField.text = ((int)(songInfo.duration % 60)).ToString();
     }
 
     public void SetNoteFieldValues(NoteInfo noteInfo)
     {
-        //noteTypeField.value = (int)noteInfo.type;
+        noteTypeField.value = (int)noteInfo.type;
         laneField.text = noteInfo.lane.ToString();
         beatField.text = noteInfo.beat.ToString();
         miscIntField.text = noteInfo.intParam.ToString();
@@ -173,21 +183,25 @@ public class ChartUIManager : MonoBehaviour
     public void OnTimeSignatureBeatsChanged(string value)
     {
         int.TryParse(value, out songInfo.beatsPerBar);
+        gridController.gridObjects[0].GetComponent<LabelColumn>().LoadVisual();
     }
 
     public void OnTimeSignatureSubdivisionChanged(string value)
     {
         int.TryParse(value, out noteSubdivision);
+        gridController.gridObjects.ForEach((GameObject gridObject) => { gridObject.GetComponent<GridColumn>().LoadVisual(); });
     }
 
     public void OnGridSubdivisionChanged(string value)
     {
         int.TryParse(value, out gridSubdivision);
+        gridController.gridObjects.ForEach((GameObject gridObject) => { gridObject.GetComponent<GridColumn>().LoadVisual(); });
     }
 
     public void OnBPMChanged(string value)
     {
         int.TryParse(value, out songInfo.bpm);
+        gridController.SetHeightWithBeats((int)(songInfo.duration / songInfo.crotchet));
     }
 
     public void OnOffsetChanged(string value)
@@ -199,13 +213,15 @@ public class ChartUIManager : MonoBehaviour
     {
         int mins;
         int.TryParse(value, out mins);
-        songInfo.length = mins * 60 + songInfo.length % 60;
+        songInfo.duration = mins * 60 + songInfo.duration % 60;
+        gridController.SetHeightWithBeats((int)(songInfo.duration / songInfo.crotchet));
     }
 
     public void OnSongLengthSecondsChanged(string value)
     {
         int secs;
         int.TryParse(value, out secs);
-        songInfo.length = songInfo.length - songInfo.length % 60 + secs;
+        songInfo.duration = songInfo.duration - songInfo.duration % 60 + secs;
+        gridController.SetHeightWithBeats((int)(songInfo.duration / songInfo.crotchet));
     }
 }

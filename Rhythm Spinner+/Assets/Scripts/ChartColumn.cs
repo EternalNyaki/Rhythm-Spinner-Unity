@@ -1,3 +1,5 @@
+using System;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,13 +9,18 @@ public class ChartColumn : GridColumn
 
     public GameObject gridLinePrefab;
 
-    public override void SetHeight(float height)
+    public override void LoadVisual()
     {
-        base.SetHeight(height);
+        base.LoadVisual();
+
+        foreach (Transform child in transform)
+        {
+            Destroy(child.gameObject);
+        }
+
         for (float pos = 0; pos <= gridController.height; pos += gridController.beatSpacing * ChartUIManager.Instance.subdivision)
         {
             GameObject gridLine = Instantiate(gridLinePrefab, new Vector3(rect.position.x, rect.position.y - gridController.height / 2 + pos), Quaternion.identity, transform);
-            ((RectTransform)gridLine.transform).SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, gridController.beatSpacing * ChartUIManager.Instance.subdivision);
             if (pos % gridController.beatSpacing != 0)
             {
                 gridLine.GetComponent<Image>().color = Color.white * 0.4f;

@@ -7,24 +7,26 @@ using UnityEngine;
 public class SongInfo
 {
     public int bpm;
-    public float crotchet;
+    public float crotchet
+    {
+        get { return (float)60 / bpm; }
+    }
     public float offset;
     public float countIn;
     public int beatsPerBar;
-    public float length;
+    public float duration;
     public AudioClip audio;
     public NoteInfo[] chartInfo;
     public string title, artist;
     public Sprite coverImage;
 
-    public SongInfo(int bpm, float offset, float countIn, int beatsPerBar, float length, AudioClip audio = null, NoteInfo[] chartInfo = null, string title = "", string artist = "", Sprite coverImage = null)
+    public SongInfo(int bpm, float offset, float countIn, int beatsPerBar, float duration, AudioClip audio = null, NoteInfo[] chartInfo = null, string title = "", string artist = "", Sprite coverImage = null)
     {
         this.bpm = bpm;
-        this.crotchet = 60 / bpm;
         this.offset = offset;
         this.countIn = countIn;
         this.beatsPerBar = beatsPerBar;
-        this.length = length;
+        this.duration = duration;
         this.audio = audio;
         this.chartInfo = chartInfo;
         this.title = title;

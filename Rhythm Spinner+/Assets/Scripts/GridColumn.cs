@@ -21,10 +21,32 @@ public class GridColumn : MonoBehaviour
         }
     }
 
-    public virtual void SetHeight(float height)
+    public void SetHeight(float height)
     {
         if (gridController == null) gridController = GetComponentInParent<GridController>();
         if (rect == null) rect = GetComponent<RectTransform>();
         rect.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, height);
+
+        LoadVisual();
+    }
+
+    public virtual void LoadVisual()
+    {
+
+    }
+
+    protected bool TryGetChildAtIndex(int childIndex, out GameObject child)
+    {
+        try
+        {
+            child = transform.GetChild(childIndex).gameObject;
+        }
+        catch (UnityException)
+        {
+            child = null;
+            return false;
+        }
+
+        return true;
     }
 }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,9 +9,15 @@ public class LabelColumn : GridColumn
 {
     public GameObject labelPrefab;
 
-    public override void SetHeight(float height)
+    public override void LoadVisual()
     {
-        base.SetHeight(height);
+        base.LoadVisual();
+
+        foreach (Transform child in transform)
+        {
+            Destroy(child.gameObject);
+        }
+
         for (int beat = 0; beat < gridController.beats; beat++)
         {
             GameObject label = Instantiate(labelPrefab, new Vector3(rect.position.x, rect.position.y - gridController.height / 2 + beat * gridController.beatSpacing), Quaternion.identity, transform);
